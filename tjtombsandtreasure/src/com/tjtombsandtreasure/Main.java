@@ -30,15 +30,15 @@ public class Main extends Canvas implements Runnable {
 	
 	BufferStrategy bs;
 	private BufferedImage bgImage;
-	private BufferedImage cat = Art.Load("/cat.png");
+	private BufferedImage cat = Art.Load("cat.png");
 //	private BufferedImage cat2 = Art.Load("/cat2.png");
-	private BufferedImage treasure = Art.Load("/treasure.png");
-	private BufferedImage adventureguy = Art.Load("/adventure-guy-idle.png");
-	private BufferedImage adventureguyright = Art.Load("/adventure-guy-right.png");
-	private BufferedImage adventureguyleft = Art.Load("/adventure-guy-left.png");
+	private BufferedImage treasure = Art.Load("treasure.png");
+	private BufferedImage adventureguy = Art.Load("adventure-guy-idle.png");
+	private BufferedImage adventureguyright = Art.Load("adventure-guy-right.png");
+	private BufferedImage adventureguyleft = Art.Load("adventure-guy-left.png");
 	
 //	private BufferedImage levelImage = Art.Load("/level-blank-hook.png");
-	private BufferedImage levelImage = Art.Load("/level-1b.png");	
+	private BufferedImage levelImage = Art.Load("level-1b.png");	
 	
 	private double cameraX = 0;
 	private double cameraY = 0;
@@ -79,15 +79,15 @@ public class Main extends Canvas implements Runnable {
 	
 	public static void main(String[] args)
 	{
-		Main main = new Main();
+		Main main2 = new Main();
 		JFrame frame = new JFrame();
-		frame.add(main);
+		frame.add(main2);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
-		thread = new Thread(main);
+		thread = new Thread(main2);
 		thread.start();
 	}
 	
