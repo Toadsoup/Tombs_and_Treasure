@@ -2,6 +2,7 @@
 package com.tjtombsandtreasure;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class EntityPlayer extends Entity {
@@ -17,10 +18,14 @@ public class EntityPlayer extends Entity {
 	public double topheight = 0.25;
 	public double width = .50;
 	public double rightwidth = 0.25;
+
+	public static BufferedImage adventureguy = Art.Load("adventure-guy-idle.png");
+	public static BufferedImage adventureguyright = Art.Load("adventure-guy-right.png");
+	public static BufferedImage adventureguyleft = Art.Load("adventure-guy-left.png");
 	
-	public EntityPlayer(BufferedImage Sprite, double X, double Y)
+	public EntityPlayer(double X, double Y)
 	{
-		super(Sprite, X, Y);
+		super(adventureguy, X, Y);
 	}
 	public void actionStart()
 	{
@@ -42,9 +47,33 @@ public class EntityPlayer extends Entity {
 		}
 	}
 	
-	public void Tick(Level level)
+	public void Tick(Level level, Input input)
 	{	
 
+		this.xv = 0;
+		if(input.keys[KeyEvent.VK_LEFT])
+		{
+			this.xv = -0.1;
+			this.sprite = adventureguyleft;
+		}	
+		else if(input.keys[KeyEvent.VK_RIGHT])
+		{
+			this.xv = 0.15;
+			this.sprite= adventureguyright;
+		}
+		else
+			this.sprite= adventureguy;
+		
+		
+		if(input.keys[KeyEvent.VK_UP])
+			if(this.onFloor)
+				this.yv = -0.25;
+		
+		if(input.keys[KeyEvent.VK_SPACE])
+			this.actionStart();
+		else
+			this.actionOver();
+		
 		if (yv <=1 && yv > .25)
 			yv += 0.00175;
 		else if (yv <= .25 && yv > 0 )
