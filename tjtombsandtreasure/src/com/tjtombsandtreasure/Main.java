@@ -33,9 +33,6 @@ public class Main extends Canvas implements Runnable {
 	private BufferedImage cat = Art.Load("cat.png");
 //	private BufferedImage cat2 = Art.Load("/cat2.png");
 	private BufferedImage treasure = Art.Load("treasure.png");
-	private BufferedImage adventureguy = Art.Load("adventure-guy-idle.png");
-	private BufferedImage adventureguyright = Art.Load("adventure-guy-right.png");
-	private BufferedImage adventureguyleft = Art.Load("adventure-guy-left.png");
 	
 //	private BufferedImage levelImage = Art.Load("/level-blank-hook.png");
 	private BufferedImage levelImage = Art.Load("level-1b.png");	
@@ -49,7 +46,7 @@ public class Main extends Canvas implements Runnable {
 	private Level level = new Level(levelImage);
 	private EntityNPC[] entities = new EntityNPC[15];
 	private EntityTreasure[] treasures = new EntityTreasure[500];
-	private EntityPlayer adventurer = new EntityPlayer(adventureguy, 100,100);
+	private EntityPlayer adventurer = new EntityPlayer(100,100);
 	
 	
 	public Main()
@@ -72,7 +69,7 @@ public class Main extends Canvas implements Runnable {
 		{
 			treasures[i] = new EntityTreasure(treasure, 2 + r.nextDouble() * 26, 1 + r.nextDouble() * 4);
 		}
-			adventurer = new EntityPlayer(adventureguy, 2+r.nextDouble()*22, + r.nextDouble() * 4);
+			adventurer = new EntityPlayer(2+r.nextDouble()*22, + r.nextDouble() * 4);
 
 		
 	}
@@ -121,34 +118,6 @@ public class Main extends Canvas implements Runnable {
 	{
 		tickcount++;
 		
-		adventurer.xv = 0;
-		if(input.keys[KeyEvent.VK_LEFT])
-		{
-			adventurer.xv = -0.1;
-			adventurer.sprite = adventureguyleft;
-		}	
-		else if(input.keys[KeyEvent.VK_RIGHT])
-		{
-			adventurer.xv = 0.15;
-			adventurer.sprite= adventureguyright;
-		}
-		else
-			adventurer.sprite= adventureguy;
-		
-		
-		if(input.keys[KeyEvent.VK_UP])
-			if(adventurer.onFloor)
-				adventurer.yv = -0.25;
-		
-		if(input.keys[KeyEvent.VK_SPACE])
-			adventurer.actionStart();
-		else
-			adventurer.actionOver();
-		
-		
-		
-		
-		
 		if(input.keys[KeyEvent.VK_ESCAPE])
 			running = false;
 		
@@ -159,8 +128,8 @@ public class Main extends Canvas implements Runnable {
 //			else entities[i].xv = 0;
 			entities[i].Tick(level);
 		}
+		adventurer.Tick(level,input);
 		adventurer.onFloorCount = 0;
-		adventurer.Tick(level);
 		
 		
 		
