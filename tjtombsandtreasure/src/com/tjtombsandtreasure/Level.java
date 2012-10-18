@@ -8,8 +8,8 @@ public class Level {
 	public int width;
 	public int height;
 	
-	private BufferedImage tile0 = Art.Load("block1.png");
-	private BufferedImage tile1 = Art.Load("brick.png");
+	private BufferedImage tile0 = Art.Load("/block1.png");
+	private BufferedImage tile1 = Art.Load("/brick.png");
 	
 	public Level(BufferedImage levelImage)
 	{
